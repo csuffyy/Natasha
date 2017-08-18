@@ -121,14 +121,14 @@ namespace NatashaUT.Complex
             {
                 EModel modelHandler = EModel.CreateModelFromObject(model);
                 modelHandler.Set("ValueField", modelHandler.DLoad("ValueField").Operator + modelHandler.DLoad("StaticValueField").DelayAction);
-                modelHandler.Set("StaticValueField", modelHandler.DLoadValue("ValueField").Operator + modelHandler.DLoadValue("StaticValueField").DelayAction);
+                //modelHandler.Set("StaticValueField", modelHandler.DLoadValue("ValueField").Operator + modelHandler.DLoadValue("StaticValueField").DelayAction);
                 modelHandler.Set("RefField", modelHandler.DLoadValue("RefField").Operator + modelHandler.DLoadValue("StaticRefField").DelayAction);
                 modelHandler.Load();
             }).Compile();
             Func<FieldClass> action = (Func<FieldClass>)test;
             FieldClass result = action();
             Assert.Equal((ulong)300, result.ValueField);
-            Assert.Equal((ulong)500, FieldClass.StaticValueField);
+            //Assert.Equal((ulong)500, FieldClass.StaticValueField);
             Assert.Equal("TestStatic", result.RefField);
 
         }
